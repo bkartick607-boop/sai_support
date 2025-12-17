@@ -1,0 +1,67 @@
+/* Header.css */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+  padding: 0 16px;
+  flex-shrink: 0;
+
+  background-color: var(--header-cream-bg);
+  border-bottom: 1px solid var(--header-cream-border);
+}
+
+/* Light / Dark mode variables */
+:root {
+  --header-cream-bg: #f6f1e8;
+  --header-cream-border: #e3dacd;
+}
+
+[data-theme='dark'] {
+  --header-cream-bg: #2a2620;
+  --header-cream-border: #3a342b;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.header-logo:hover {
+  background-color: var(--colorNeutralBackground1Hover);
+}
+
+.header-title {
+  white-space: nowrap;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile-button {
+  padding: 4px;
+}
+
+.profile-menu-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.profile-email {
+  color: var(--colorNeutralForeground3);
+}
