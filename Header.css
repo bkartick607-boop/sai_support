@@ -1,61 +1,67 @@
-/* Header.css */
-
 .app-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: var(--header-height);
-  padding: 0 16px;
+  padding: 0 20px;
   flex-shrink: 0;
-
-  background-color: var(--header-cream-bg);
-  border-bottom: 1px solid var(--header-cream-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-/* Light / Dark mode variables */
-:root {
-  --header-cream-bg: #f6f1e8;
-  --header-cream-border: #e3dacd;
+/* Premium neutral header surface */
+.app-header-surface {
+  background: linear-gradient(
+    to bottom,
+    var(--colorNeutralBackground3),
+    var(--colorNeutralBackground2)
+  );
+  border-bottom: 1px solid var(--colorNeutralStroke2);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.04),
+    0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-[data-theme='dark'] {
-  --header-cream-bg: #2a2620;
-  --header-cream-border: #3a342b;
-}
-
+/* Left section */
 .header-left {
   display: flex;
   align-items: center;
 }
 
+/* Logo block */
 .header-logo {
   display: flex;
   align-items: center;
   gap: 12px;
   cursor: pointer;
-  padding: 6px 10px;
+  padding: 6px 12px;
   border-radius: 6px;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.15s ease;
 }
 
 .header-logo:hover {
-  background-color: var(--colorNeutralBackground1Hover);
+  background-color: var(--colorNeutralBackground2Hover);
 }
 
+/* Title */
 .header-title {
   white-space: nowrap;
+  color: var(--colorNeutralForeground1);
 }
 
+/* Right section */
 .header-right {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .profile-button {
   padding: 4px;
 }
 
+/* Profile menu */
 .profile-menu-info {
   display: flex;
   flex-direction: column;
