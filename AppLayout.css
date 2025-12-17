@@ -1,0 +1,44 @@
+/* AppLayout.css */
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.app-main {
+  flex: 1;
+  overflow: hidden;
+  padding: 16px;
+  background-color: var(--colorNeutralBackground2);
+}
+
+/* Footer */
+.app-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 16px;
+  font-size: 12px;
+  color: var(--colorNeutralForeground3);
+  background-color: var(--colorNeutralBackground1);
+  border-top: 1px solid var(--colorNeutralStroke1);
+  flex-shrink: 0;
+}
+
+.footer-center {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-right a {
+  color: var(--colorBrandForeground1);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-right a:hover {
+  text-decoration: underline;
+}
