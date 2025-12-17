@@ -30,11 +30,19 @@ export const Header: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <header className="app-header app-header-surface">
+    <header
+      className="app-header app-header-surface"
+      data-theme={themeMode}
+    >
       <div className="header-left">
         <div className="header-logo" onClick={() => navigate('/')}>
           <svg width="32" height="32" viewBox="0 0 100 100">
-            <rect width="100" height="100" rx="18" fill={tokens.colorBrandBackground} />
+            <rect
+              width="100"
+              height="100"
+              rx="18"
+              fill={tokens.colorBrandBackground}
+            />
             <text
               x="50"
               y="65"
@@ -54,10 +62,20 @@ export const Header: React.FC = () => {
       </div>
 
       <div className="header-right">
-        <Tooltip content={themeMode === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}>
+        <Tooltip
+          content={
+            themeMode === 'light'
+              ? 'Switch to dark mode'
+              : 'Switch to light mode'
+          }
+        >
           <Button
             appearance="subtle"
-            icon={themeMode === 'light' ? <WeatherMoon24Regular /> : <WeatherSunny24Regular />}
+            icon={
+              themeMode === 'light'
+                ? <WeatherMoon24Regular />
+                : <WeatherSunny24Regular />
+            }
             onClick={toggleTheme}
           />
         </Tooltip>
@@ -85,7 +103,9 @@ export const Header: React.FC = () => {
             <MenuList>
               <MenuItem icon={<Person24Regular />} disabled>
                 <div className="profile-menu-info">
-                  <Text weight="semibold">{user?.name || 'User'}</Text>
+                  <Text weight="semibold">
+                    {user?.name || 'User'}
+                  </Text>
                   <Text size={200} className="profile-email">
                     {user?.email}
                   </Text>
