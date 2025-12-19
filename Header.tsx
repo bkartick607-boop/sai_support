@@ -35,8 +35,13 @@ export const Header: React.FC = () => {
       data-theme={themeMode}
     >
       <div className="header-left">
-        <div className="header-logo" onClick={() => navigate('/')}>
-          <svg width="32" height="32" viewBox="0 0 100 100">
+        <div
+          className="header-logo"
+          onClick={() => navigate('/')}
+          role="button"
+          tabIndex={0}
+        >
+          <svg width="32" height="32" viewBox="0 0 100 100" aria-hidden="true">
             <rect
               width="100"
               height="100"
@@ -68,6 +73,7 @@ export const Header: React.FC = () => {
               ? 'Switch to dark mode'
               : 'Switch to light mode'
           }
+          relationship="label"
         >
           <Button
             appearance="subtle"
@@ -77,20 +83,30 @@ export const Header: React.FC = () => {
                 : <WeatherSunny24Regular />
             }
             onClick={toggleTheme}
+            aria-label={
+              themeMode === 'light'
+                ? 'Switch to dark mode'
+                : 'Switch to light mode'
+            }
           />
         </Tooltip>
 
-        <Tooltip content="About">
+        <Tooltip content="Help and About" relationship="label">
           <Button
             appearance="subtle"
             icon={<Question24Regular />}
             onClick={() => navigate('/about')}
+            aria-label="Help and About"
           />
         </Tooltip>
 
         <Menu>
           <MenuTrigger disableButtonEnhancement>
-            <Button appearance="subtle" className="profile-button">
+            <Button
+              appearance="subtle"
+              className="profile-button"
+              aria-label="User profile menu"
+            >
               <Avatar
                 name={user?.name || user?.email || 'User'}
                 initials={user?.initials}
@@ -121,4 +137,4 @@ export const Header: React.FC = () => {
       </div>
     </header>
   );
-}; 
+};
