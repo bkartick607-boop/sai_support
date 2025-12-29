@@ -1,0 +1,42 @@
+/* ChatHeader.css */
+
+.chat-header {
+  background-color: var(--colorNeutralBackground3);
+  border-bottom: 1px solid var(--colorNeutralStroke2);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.session-badge {
+  background-color: rgba(16, 124, 16, 0.15);
+  color: #107c10;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.chat-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.thread-id {
+  color: var(--colorNeutralForeground3);
+  padding: 2px 8px;
+  background-color: var(--colorNeutralBackground3);
+  border-radius: 4px;
+}
+
+.chat-header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.agent-dropdown {
+  min-width: 180px;
+}
