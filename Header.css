@@ -10,27 +10,26 @@
   z-index: 100;
 }
 
-/* Darker shade of blue */
-
+/* Darker bluish header surface */
 .app-header-surface {
   background: linear-gradient(
     to bottom,
-    var(--colorBrandBackground1),
-    var(--colorBrandBackground3)
+    color-mix(in srgb, var(--colorBrandBackground) 88%, black),
+    color-mix(in srgb, var(--colorBrandBackground) 72%, black)
   );
-  border-bottom: 1px solid var(--colorBrandStroke1);
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--colorBrandBackground) 65%, black);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.05),
-    0 4px 14px rgba(0, 0, 0, 0.22);
+    0 1px 0 rgba(255, 255, 255, 0.06),
+    0 4px 14px rgba(0, 0, 0, 0.25);
 }
-
 
 /* Dark mode refinement */
 .app-header[data-theme='dark'].app-header-surface {
   background: linear-gradient(
-    180deg,
-    rgba(0, 120, 212, 0.22),
-    rgba(0, 120, 212, 0.10)
+    to bottom,
+    color-mix(in srgb, var(--colorBrandBackground) 55%, black),
+    color-mix(in srgb, var(--colorBrandBackground) 40%, black)
   );
   border-bottom: 1px solid rgba(0, 120, 212, 0.35);
   box-shadow:
@@ -58,13 +57,13 @@
 }
 
 .header-logo:hover {
-  background-color: rgba(0, 120, 212, 0.12);
+  background-color: rgba(255, 255, 255, 0.12);
 }
 
 /* Title */
 .header-title {
   white-space: nowrap;
-  color: var(--colorNeutralForeground1);
+  color: var(--colorNeutralForegroundOnBrand);
 }
 
 /* Right section */
@@ -89,6 +88,7 @@
   color: var(--colorNeutralForeground3);
 }
 
+/* Mobile refinement */
 @media (max-width: 768px) {
   .app-header {
     padding: 0 12px;
