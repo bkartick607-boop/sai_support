@@ -1,7 +1,15 @@
-.app-header .header-right .fui-Button svg {
+.app-header .header-right .fui-Button {
   color: var(--colorNeutralForegroundOnBrand);
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
-.app-header .header-right .fui-Button:hover svg {
+.app-header .header-right .fui-Button:hover,
+.app-header .header-right .fui-Button:active,
+.app-header .header-right .fui-Button:focus-visible {
   color: var(--colorNeutralForegroundOnBrand);
+  background-color: rgba(0, 0, 0, 0.22);
+}
+
+.app-header .header-right .fui-Button svg {
+  color: currentColor;
 }
