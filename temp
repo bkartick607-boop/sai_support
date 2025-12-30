@@ -78,10 +78,6 @@
   border: 1px solid var(--colorNeutralStroke2);
 }
 
-/* ========================= */
-/* TABLE RESULT SET (FIXED) */
-/* ========================= */
-
 /* Scroll container — ONLY this scrolls */
 .message-content .chat-table-wrapper {
   max-height: 320px;
