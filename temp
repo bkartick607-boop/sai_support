@@ -1,9 +1,7 @@
-.app-header .header-right .fui-Button {
+.app-header .header-right .fui-Button svg {
   color: var(--colorNeutralForegroundOnBrand);
-  background-color: rgba(255, 255, 255, 0.06);
-  border-radius: 6px;
 }
 
-.app-header .header-right .fui-Button:hover {
-  background-color: rgba(255, 255, 255, 0.14);
+.app-header .header-right .fui-Button:hover svg {
+  color: var(--colorNeutralForegroundOnBrand);
 }
