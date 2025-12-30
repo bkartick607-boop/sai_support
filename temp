@@ -1,6 +1,7 @@
 .message-content {
   line-height: 1.6;
   max-width: 100%;
+  overflow: hidden; /* Prevent parent text from scrolling */
 }
 
 /* Paragraphs */
@@ -38,7 +39,7 @@
   font-size: 1em;
 }
 
-/* Strong/Bold text */
+/* Strong text */
 .message-content strong {
   font-weight: 600;
   color: var(--colorNeutralForeground1);
@@ -69,23 +70,15 @@
   font-size: 0.9em;
 }
 
-/* Code blocks */
-.message-content .code-block {
-  margin: 12px 0;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: #1e1e1e;
-  border: 1px solid var(--colorNeutralStroke2);
-}
-
-/* Scroll container — ONLY this scrolls */
+/* Table scroll container */
 .message-content .chat-table-wrapper {
   max-height: 320px;
   overflow: auto;
+  overscroll-behavior: contain;
   margin: 12px 0;
 }
 
-/* Normal table layout (single layout context) */
+/* Table layout */
 .message-content table {
   border-collapse: collapse;
   width: max-content;
@@ -94,7 +87,7 @@
   font-size: 0.9em;
 }
 
-/* Sticky header */
+/* Sticky table header */
 .message-content thead th {
   position: sticky;
   top: 0;
@@ -102,7 +95,7 @@
   background-color: var(--colorNeutralBackground3);
 }
 
-/* Cells */
+/* Table cells */
 .message-content th,
 .message-content td {
   border: 1px solid var(--colorNeutralStroke2);
@@ -111,7 +104,7 @@
   white-space: nowrap;
 }
 
-/* Alternate rows */
+/* Alternate row background */
 .message-content tbody tr:nth-child(even) {
   background-color: var(--colorNeutralBackground2);
 }
