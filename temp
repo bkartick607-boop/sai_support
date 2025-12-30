@@ -1,11 +1,9 @@
-.app-header-surface {
-  background: linear-gradient(
-    to bottom,
-    var(--colorBrandBackground3),
-    var(--colorBrandBackground4)
-  );
-  border-bottom: 1px solid var(--colorBrandStroke1);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.06),
-    0 4px 14px rgba(0, 0, 0, 0.25);
+.app-header .header-right .fui-Button {
+  color: var(--colorNeutralForegroundOnBrand);
+  background-color: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+}
+
+.app-header .header-right .fui-Button:hover {
+  background-color: rgba(255, 255, 255, 0.14);
 }
