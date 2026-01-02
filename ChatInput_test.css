@@ -1,0 +1,42 @@
+/* ChatInput.css */
+
+.chat-input {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border-top: 1px solid var(--colorNeutralStroke2);
+  background-color: var(--colorNeutralBackground1);
+  flex-shrink: 0;
+  align-items: flex-end;
+}
+
+.chat-textarea {
+  flex: 1;
+}
+
+/* TRUE bottom-aligned input */
+.bottom-input {
+  min-height: 60px;
+  max-height: 200px;
+  padding: 8px 12px;
+  border: 1px solid var(--colorNeutralStroke2);
+  border-radius: 4px;
+  display: flex;
+  align-items: flex-end;
+  overflow-y: auto;
+  background-color: var(--colorNeutralBackground1);
+  outline: none;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Placeholder at bottom */
+.bottom-input:empty::before {
+  content: attr(data-placeholder);
+  color: var(--colorNeutralForeground3);
+  pointer-events: none;
+}
+
+.send-button {
+  height: 40px;
+}
