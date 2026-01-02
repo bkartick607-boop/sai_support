@@ -14,7 +14,6 @@
   flex: 1;
 }
 
-/* TRUE bottom-aligned input */
 .bottom-input {
   min-height: 60px;
   max-height: 200px;
@@ -30,8 +29,7 @@
   word-break: break-word;
 }
 
-/* Placeholder at bottom */
-.bottom-input:empty::before {
+.bottom-input[data-empty="true"]::before {
   content: attr(data-placeholder);
   color: var(--colorNeutralForeground3);
   pointer-events: none;
