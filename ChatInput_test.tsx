@@ -8,6 +8,7 @@ export const ChatInput: React.FC = () => {
   const [input, setInput] = useState('');
   const { sendMessage, isLoading } = useChat();
   const inputRef = useRef<HTMLDivElement>(null);
+
   const placeCaretAtBottom = () => {
     const el = inputRef.current;
     if (!el) return;
@@ -18,14 +19,12 @@ export const ChatInput: React.FC = () => {
 
     const range = document.createRange();
     const sel = window.getSelection();
-
     range.selectNodeContents(el);
     range.collapse(false);
     sel?.removeAllRanges();
     sel?.addRange(range);
   };
 
-  // Focus + caret fix on mount
   useEffect(() => {
     placeCaretAtBottom();
     inputRef.current?.focus();
@@ -40,8 +39,18 @@ export const ChatInput: React.FC = () => {
 
     if (inputRef.current) {
       inputRef.current.innerHTML = '<br />';
+      inputRef.current.dataset.empty = 'true';
       placeCaretAtBottom();
       inputRef.current.focus();
+    }
+  };
+
+  const handleInput = (e: React.FormEvent<HTMLDivElement>) => {
+    const text = e.currentTarget.innerText.replace(/\n/g, '').trim();
+    setInput(text);
+
+    if (inputRef.current) {
+      inputRef.current.dataset.empty = text ? 'false' : 'true';
     }
   };
 
@@ -59,9 +68,8 @@ export const ChatInput: React.FC = () => {
         className="chat-textarea bottom-input"
         contentEditable={!isLoading}
         data-placeholder="Type your message... (Press Enter to send, Shift+Enter for new line)"
-        onInput={(e) =>
-          setInput((e.target as HTMLDivElement).innerText.trimEnd())
-        }
+        data-empty="true"
+        onInput={handleInput}
         onFocus={placeCaretAtBottom}
         onKeyDown={handleKeyDown}
         suppressContentEditableWarning
