@@ -7,27 +7,29 @@ import '@/styles/ChatInput.css';
 export const ChatInput: React.FC = () => {
   const [input, setInput] = useState('');
   const { sendMessage, isLoading } = useChat();
-  const inputRef = useRef<HTMLDivElement>(null);
+  const editorRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
 
-  const placeCaretAtBottom = () => {
-    const el = inputRef.current;
-    if (!el) return;
+  const focusCaretBottom = () => {
+    const line = lineRef.current;
+    if (!line) return;
 
-    if (el.innerHTML === '') {
-      el.innerHTML = '<br />';
+    if (line.innerHTML === '') {
+      line.innerHTML = '\u200B'; // zero-width space
     }
 
     const range = document.createRange();
     const sel = window.getSelection();
-    range.selectNodeContents(el);
+
+    range.selectNodeContents(line);
     range.collapse(false);
     sel?.removeAllRanges();
     sel?.addRange(range);
   };
 
   useEffect(() => {
-    placeCaretAtBottom();
-    inputRef.current?.focus();
+    focusCaretBottom();
+    lineRef.current?.focus();
   }, []);
 
   const handleSubmit = async () => {
@@ -37,21 +39,17 @@ export const ChatInput: React.FC = () => {
     setInput('');
     await sendMessage(message);
 
-    if (inputRef.current) {
-      inputRef.current.innerHTML = '<br />';
-      inputRef.current.dataset.empty = 'true';
-      placeCaretAtBottom();
-      inputRef.current.focus();
+    if (lineRef.current) {
+      lineRef.current.innerHTML = '\u200B';
+      editorRef.current!.dataset.empty = 'true';
+      focusCaretBottom();
     }
   };
 
-  const handleInput = (e: React.FormEvent<HTMLDivElement>) => {
-    const text = e.currentTarget.innerText.replace(/\n/g, '').trim();
+  const handleInput = () => {
+    const text = lineRef.current?.innerText.replace(/\u200B/g, '') ?? '';
     setInput(text);
-
-    if (inputRef.current) {
-      inputRef.current.dataset.empty = text ? 'false' : 'true';
-    }
+    editorRef.current!.dataset.empty = text ? 'false' : 'true';
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
@@ -64,16 +62,21 @@ export const ChatInput: React.FC = () => {
   return (
     <div className="chat-input">
       <div
-        ref={inputRef}
+        ref={editorRef}
         className="chat-textarea bottom-input"
-        contentEditable={!isLoading}
         data-placeholder="Type your message... (Press Enter to send, Shift+Enter for new line)"
         data-empty="true"
-        onInput={handleInput}
-        onFocus={placeCaretAtBottom}
-        onKeyDown={handleKeyDown}
-        suppressContentEditableWarning
-      />
+      >
+        <div
+          ref={lineRef}
+          className="editor-line"
+          contentEditable={!isLoading}
+          onInput={handleInput}
+          onKeyDown={handleKeyDown}
+          suppressContentEditableWarning
+        />
+      </div>
+
       <Tooltip content="Send message (Enter)" relationship="label">
         <Button
           appearance="primary"
