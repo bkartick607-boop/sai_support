@@ -14,6 +14,7 @@
   flex: 1;
 }
 
+/* Outer container controls bottom alignment */
 .bottom-input {
   min-height: 60px;
   max-height: 200px;
@@ -21,16 +22,26 @@
   border: 1px solid var(--colorNeutralStroke2);
   border-radius: 4px;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-end; 
   overflow-y: auto;
   background-color: var(--colorNeutralBackground1);
+  position: relative;
+}
+
+/* Inner editable line = caret anchor */
+.editor-line {
+  width: 100%;
   outline: none;
   white-space: pre-wrap;
   word-break: break-word;
 }
 
+/* Placeholder */
 .bottom-input[data-empty="true"]::before {
   content: attr(data-placeholder);
+  position: absolute;
+  left: 12px;
+  bottom: 8px;
   color: var(--colorNeutralForeground3);
   pointer-events: none;
 }
