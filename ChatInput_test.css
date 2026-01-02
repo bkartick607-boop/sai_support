@@ -14,7 +14,6 @@
   flex: 1;
 }
 
-/* Input container */
 .bottom-input {
   min-height: 60px;
   max-height: 200px;
@@ -25,17 +24,16 @@
   background-color: var(--colorNeutralBackground1);
   position: relative;
 
-  /* 🔴 remove full box feel */
-  border: none;
-  border-bottom: 1px solid var(--colorNeutralStroke2);
-  border-radius: 0;
+  /* Box */
+  border: 1px solid var(--colorNeutralStroke2);
+  border-radius: 6px;
 
   outline: none;
 }
 
-/* Blue underline on focus */
 .bottom-input:focus-within {
-  border-bottom: 2px solid var(--colorBrandStroke1);
+  border-color: var(--colorNeutralStroke2); /* keep box same */
+  border-bottom: 2px solid var(--colorBrandStroke1); /* highlight only bottom */
 }
 
 /* Inner editable line */
@@ -46,7 +44,7 @@
   word-break: break-word;
 }
 
-/* Placeholder at bottom */
+/* Placeholder */
 .bottom-input[data-empty="true"]::before {
   content: attr(data-placeholder);
   position: absolute;
