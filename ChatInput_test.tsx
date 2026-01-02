@@ -8,9 +8,26 @@ export const ChatInput: React.FC = () => {
   const [input, setInput] = useState('');
   const { sendMessage, isLoading } = useChat();
   const inputRef = useRef<HTMLDivElement>(null);
+  const placeCaretAtBottom = () => {
+    const el = inputRef.current;
+    if (!el) return;
 
-  // Focus on mount
+    if (el.innerHTML === '') {
+      el.innerHTML = '<br />';
+    }
+
+    const range = document.createRange();
+    const sel = window.getSelection();
+
+    range.selectNodeContents(el);
+    range.collapse(false);
+    sel?.removeAllRanges();
+    sel?.addRange(range);
+  };
+
+  // Focus + caret fix on mount
   useEffect(() => {
+    placeCaretAtBottom();
     inputRef.current?.focus();
   }, []);
 
@@ -22,7 +39,8 @@ export const ChatInput: React.FC = () => {
     await sendMessage(message);
 
     if (inputRef.current) {
-      inputRef.current.innerText = '';
+      inputRef.current.innerHTML = '<br />';
+      placeCaretAtBottom();
       inputRef.current.focus();
     }
   };
@@ -42,8 +60,9 @@ export const ChatInput: React.FC = () => {
         contentEditable={!isLoading}
         data-placeholder="Type your message... (Press Enter to send, Shift+Enter for new line)"
         onInput={(e) =>
-          setInput((e.target as HTMLDivElement).innerText)
+          setInput((e.target as HTMLDivElement).innerText.trimEnd())
         }
+        onFocus={placeCaretAtBottom}
         onKeyDown={handleKeyDown}
         suppressContentEditableWarning
       />
