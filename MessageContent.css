@@ -1,7 +1,6 @@
 .message-content {
   line-height: 1.6;
   max-width: 100%;
-  overflow: visible;
 }
 
 /* Paragraphs */
@@ -39,7 +38,7 @@
   font-size: 1em;
 }
 
-/* Strong/Bold text */
+/* Strong/Bold */
 .message-content strong {
   font-weight: 600;
   color: var(--colorNeutralForeground1);
@@ -139,59 +138,57 @@
   color: inherit;
 }
 
-/* Table horizontal scroll container */
-.message-content .chat-table-wrapper {
-  max-width: 100%;
-  overflow-x: auto;
-}
-
-/* Table structure */
+/* TABLE: header fixed, body scrollable only */
 .message-content table {
   border-collapse: collapse;
   width: max-content;
   min-width: 100%;
-  table-layout: fixed;
+  table-layout: auto;
   font-size: 0.9em;
 }
 
-/* Header */
+/* Header stays fixed */
 .message-content thead {
   display: table;
-  width: 100%;
-  table-layout: fixed;
+  width: max-content;
+  min-width: 100%;
 }
 
-.message-content th {
+.message-content thead th {
   background-color: var(--colorNeutralBackground3);
   font-weight: 600;
 }
 
-/* Scrollable rows only */
+/* Only records scroll */
 .message-content tbody {
   display: block;
   max-height: 320px;
+  overflow-x: auto;
   overflow-y: auto;
   overscroll-behavior: contain;
+  width: max-content;
+  min-width: 100%;
 }
 
+/* Keep column alignment */
 .message-content thead tr,
 .message-content tbody tr {
   display: table;
-  width: 100%;
-  table-layout: fixed;
+  width: max-content;
+  min-width: 100%;
+  table-layout: auto;
 }
 
+/* Cells */
 .message-content th,
 .message-content td {
   border: 1px solid var(--colorNeutralStroke2);
   padding: 8px 12px;
   text-align: left;
-  max-width: 220px;
-  overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+/* Row striping */
 .message-content tbody tr:nth-child(even) {
   background-color: var(--colorNeutralBackground2);
 }
