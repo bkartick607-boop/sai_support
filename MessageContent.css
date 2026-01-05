@@ -1,7 +1,6 @@
 .message-content {
   line-height: 1.6;
   max-width: 100%;
-  overflow: visible;
 }
 
 /* Paragraphs */
@@ -55,12 +54,17 @@
   margin: 4px 0;
 }
 
+.message-content ul li::marker {
+  color: var(--colorBrandForeground1);
+}
+
 /* Inline code */
 .message-content code {
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
   background-color: rgba(0, 0, 0, 0.08);
   padding: 2px 6px;
   border-radius: 4px;
+  font-size: 0.9em;
 }
 
 /* Code blocks */
@@ -72,16 +76,71 @@
   border: 1px solid var(--colorNeutralStroke2);
 }
 
-/* TABLE SCROLL CONTAINER */
+.message-content .code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: #2d2d2d;
+  border-bottom: 1px solid #404040;
+}
+
+.message-content .code-language {
+  font-size: 11px;
+  font-weight: 600;
+  color: #9cdcfe;
+}
+
+.message-content .copy-btn {
+  background-color: transparent;
+  border: 1px solid #555;
+  color: #ccc;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.message-content .copy-btn:hover {
+  background-color: #404040;
+  border-color: #888;
+  color: #fff;
+}
+
+.message-content .copy-btn.copied {
+  background-color: #4caf50;
+  border-color: #4caf50;
+  color: white;
+}
+
+.message-content .code-block-content {
+  padding: 12px 16px;
+  margin: 0;
+  overflow-x: auto;
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  background-color: #1e1e1e;
+  color: #d4d4d4;
+}
+
+.message-content .code-block-content code {
+  background: none;
+  padding: 0;
+  white-space: pre;
+}
+
+/* Scrollable table container */
 .message-content .chat-table-wrapper {
   max-width: 100%;
   max-height: 320px;
   overflow: auto;
-  overscroll-behavior: contain;
   margin: 12px 0;
+  border: 1px solid var(--colorNeutralStroke2);
+  border-radius: 6px;
 }
 
-/* Table */
+/* Tables */
 .message-content table {
   border-collapse: collapse;
   width: max-content;
@@ -94,7 +153,7 @@
 .message-content thead th {
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 1;
   background-color: var(--colorNeutralBackground3);
 }
 
@@ -116,6 +175,7 @@
 .message-content a {
   color: var(--colorBrandForeground1);
   text-decoration: none;
+  font-weight: 500;
 }
 
 .message-content a:hover {
