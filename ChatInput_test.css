@@ -1,5 +1,3 @@
-/* ChatInput.css */
-
 .chat-input {
   display: flex;
   gap: 12px;
@@ -31,24 +29,27 @@
   outline: none;
 }
 
+/* Bottom underline highlight only */
 .bottom-input:focus-within {
   border-color: var(--colorNeutralStroke2);
   border-bottom: 2px solid var(--colorBrandStroke1);
 }
 
-/* Inner editable – NO visuals at all */
 .editor-line {
   width: 100%;
+  padding: 0;
+  margin: 0;
+
   outline: none !important;
   border: none !important;
   box-shadow: none !important;
   background: transparent !important;
+
   white-space: pre-wrap;
   word-break: break-word;
-  padding: 0;
 }
 
-/* Kill ALL focus chrome */
+/* Kill ALL browser focus chrome */
 .editor-line:focus,
 .editor-line:focus-visible,
 .editor-line:active {
@@ -57,6 +58,7 @@
   box-shadow: none !important;
 }
 
+/* Kill Chromium caret/selection box */
 .editor-line::selection {
   background: transparent;
 }
@@ -65,7 +67,6 @@
   background: transparent;
 }
 
-/* Placeholder */
 .bottom-input[data-empty="true"]::before {
   content: attr(data-placeholder);
   position: absolute;
@@ -77,4 +78,30 @@
 
 .send-button {
   height: 40px;
+}
+
+/* Target rendered chat messages */
+.chat-message,
+.chat-message *,
+.message-content,
+.message-content * {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent;
+}
+
+/* Remove selection highlight in messages */
+.chat-message ::selection,
+.message-content ::selection {
+  background: transparent;
+}
+
+/* Prevent focus ring on rendered text */
+.chat-message:focus,
+.chat-message:focus-visible,
+.message-content:focus,
+.message-content:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
 }
