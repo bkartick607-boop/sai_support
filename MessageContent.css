@@ -1,6 +1,8 @@
 .message-content {
   line-height: 1.6;
   max-width: 100%;
+  display: inline-block;
+  width: fit-content;
 }
 
 /* Paragraphs */
