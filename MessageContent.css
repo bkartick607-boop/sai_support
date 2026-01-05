@@ -1,10 +1,8 @@
 .message-content {
   line-height: 1.6;
   max-width: 100%;
-  overflow: visible;
 }
 
-/* Paragraphs */
 .message-content p {
   margin: 0 0 8px 0;
 }
@@ -13,7 +11,6 @@
   margin-bottom: 0;
 }
 
-/* Headings */
 .message-content h1,
 .message-content h2,
 .message-content h3,
@@ -39,13 +36,11 @@
   font-size: 1em;
 }
 
-/* Strong/Bold text */
 .message-content strong {
   font-weight: 600;
   color: var(--colorNeutralForeground1);
 }
 
-/* Lists */
 .message-content ul {
   margin: 8px 0;
   padding-left: 20px;
@@ -61,7 +56,6 @@
   color: var(--colorBrandForeground1);
 }
 
-/* Inline code */
 .message-content code {
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
   background-color: rgba(0, 0, 0, 0.08);
@@ -70,7 +64,6 @@
   font-size: 0.9em;
 }
 
-/* Code blocks */
 .message-content .code-block {
   margin: 12px 0;
   border-radius: 8px;
@@ -139,51 +132,28 @@
   color: inherit;
 }
 
-/* Table horizontal scroll container */
 .message-content .chat-table-wrapper {
   max-width: 100%;
-  overflow-x: auto;
+  overflow: auto;
+  max-height: 320px;
+  border: 1px solid var(--colorNeutralStroke2);
+  border-radius: 4px;
+  margin: 12px 0;
 }
 
-/* Table structure */
 .message-content table {
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   width: max-content;
   min-width: 100%;
   table-layout: fixed;
   font-size: 0.9em;
 }
 
-/* Header */
-.message-content thead {
-  display: table;
-  width: 100%;
-  table-layout: fixed;
-}
-
-.message-content th {
-  background-color: var(--colorNeutralBackground3);
-  font-weight: 600;
-}
-
-/* Scrollable rows only */
-.message-content tbody {
-  display: block;
-  max-height: 320px;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-}
-
-.message-content thead tr,
-.message-content tbody tr {
-  display: table;
-  width: 100%;
-  table-layout: fixed;
-}
-
 .message-content th,
 .message-content td {
-  border: 1px solid var(--colorNeutralStroke2);
+  border-right: 1px solid var(--colorNeutralStroke2);
+  border-bottom: 1px solid var(--colorNeutralStroke2);
   padding: 8px 12px;
   text-align: left;
   max-width: 220px;
@@ -192,11 +162,28 @@
   white-space: nowrap;
 }
 
-.message-content tbody tr:nth-child(even) {
+.message-content th {
+  background-color: var(--colorNeutralBackground3);
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 2px solid var(--colorNeutralStroke2);
+}
+
+.message-content tr:last-child td {
+  border-bottom: none;
+}
+
+.message-content th:last-child,
+.message-content td:last-child {
+  border-right: none;
+}
+
+.message-content tr:nth-child(even) {
   background-color: var(--colorNeutralBackground2);
 }
 
-/* Links */
 .message-content a {
   color: var(--colorBrandForeground1);
   text-decoration: none;
@@ -207,7 +194,6 @@
   text-decoration: underline;
 }
 
-/* Horizontal rule */
 .message-content hr {
   border: none;
   border-top: 1px solid var(--colorNeutralStroke2);
