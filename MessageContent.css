@@ -139,43 +139,59 @@
   color: inherit;
 }
 
-/* Scrollable table container – ONLY scrollable area */
+/* Table horizontal scroll container */
 .message-content .chat-table-wrapper {
   max-width: 100%;
-  max-height: 320px;
   overflow-x: auto;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  position: relative;
 }
 
-/* Tables */
+/* Table structure */
 .message-content table {
   border-collapse: collapse;
   width: max-content;
   min-width: 100%;
-  table-layout: auto;
+  table-layout: fixed;
   font-size: 0.9em;
 }
 
-/* Sticky header */
-.message-content thead th {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background-color: var(--colorNeutralBackground3);
+/* Header */
+.message-content thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
 }
 
-/* Cells */
+.message-content th {
+  background-color: var(--colorNeutralBackground3);
+  font-weight: 600;
+}
+
+/* Scrollable rows only */
+.message-content tbody {
+  display: block;
+  max-height: 320px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.message-content thead tr,
+.message-content tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
 .message-content th,
 .message-content td {
   border: 1px solid var(--colorNeutralStroke2);
   padding: 8px 12px;
   text-align: left;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-/* Row striping */
 .message-content tbody tr:nth-child(even) {
   background-color: var(--colorNeutralBackground2);
 }
