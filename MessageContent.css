@@ -52,7 +52,6 @@
 
 .message-content ul li {
   margin: 4px 0;
-  padding-left: 4px;
 }
 
 .message-content ul li::marker {
@@ -90,8 +89,6 @@
   font-size: 11px;
   font-weight: 600;
   color: #9cdcfe;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 .message-content .copy-btn {
@@ -102,7 +99,6 @@
   border-radius: 4px;
   font-size: 12px;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
 .message-content .copy-btn:hover {
@@ -132,8 +128,6 @@
   background: none;
   padding: 0;
   white-space: pre;
-  font-size: inherit;
-  color: inherit;
 }
 
 /* Scrollable table container */
@@ -169,9 +163,6 @@
   border: 1px solid var(--colorNeutralStroke2);
   padding: 8px 12px;
   text-align: left;
-  max-width: 220px;
-  overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
 }
 
