@@ -24,7 +24,7 @@
   background-color: var(--colorNeutralBackground1);
   position: relative;
 
-  /* Box */
+  /* Outer box */
   border: 1px solid var(--colorNeutralStroke2);
   border-radius: 6px;
 
@@ -32,11 +32,11 @@
 }
 
 .bottom-input:focus-within {
-  border-color: var(--colorNeutralStroke2); /* keep box same */
-  border-bottom: 2px solid var(--colorBrandStroke1); /* highlight only bottom */
+  border-color: var(--colorNeutralStroke2);
+  border-bottom: 2px solid var(--colorBrandStroke1);
 }
 
-/* Inner editable must be visually invisible */
+/* Inner editable – NO visuals at all */
 .editor-line {
   width: 100%;
   outline: none !important;
@@ -45,9 +45,10 @@
   background: transparent !important;
   white-space: pre-wrap;
   word-break: break-word;
+  padding: 0;
 }
 
-/* Kill browser focus ring when typing */
+/* Kill ALL focus chrome */
 .editor-line:focus,
 .editor-line:focus-visible,
 .editor-line:active {
@@ -56,9 +57,12 @@
   box-shadow: none !important;
 }
 
-/* Kill Chromium inner selection box */
-.editor-line::-webkit-focus-inner {
-  border: 0 !important;
+.editor-line::selection {
+  background: transparent;
+}
+
+.editor-line *::selection {
+  background: transparent;
 }
 
 /* Placeholder */
