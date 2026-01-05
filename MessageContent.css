@@ -1,20 +1,19 @@
 .message-content {
   line-height: 1.6;
   max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  max-height: 70vh;
+  overflow: visible;
 }
 
+/* Paragraphs */
 .message-content p {
   margin: 0 0 8px 0;
-  flex-shrink: 0;
 }
 
 .message-content p:last-child {
   margin-bottom: 0;
 }
 
+/* Headings */
 .message-content h1,
 .message-content h2,
 .message-content h3,
@@ -22,7 +21,6 @@
   margin: 16px 0 8px 0;
   font-weight: 600;
   color: var(--colorNeutralForeground1);
-  flex-shrink: 0;
 }
 
 .message-content h1:first-child,
@@ -41,16 +39,17 @@
   font-size: 1em;
 }
 
+/* Strong/Bold text */
 .message-content strong {
   font-weight: 600;
   color: var(--colorNeutralForeground1);
 }
 
+/* Lists */
 .message-content ul {
   margin: 8px 0;
   padding-left: 20px;
   list-style-type: disc;
-  flex-shrink: 0;
 }
 
 .message-content ul li {
@@ -62,6 +61,7 @@
   color: var(--colorBrandForeground1);
 }
 
+/* Inline code */
 .message-content code {
   font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
   background-color: rgba(0, 0, 0, 0.08);
@@ -70,13 +70,13 @@
   font-size: 0.9em;
 }
 
+/* Code blocks */
 .message-content .code-block {
   margin: 12px 0;
   border-radius: 8px;
   overflow: hidden;
   background-color: #1e1e1e;
   border: 1px solid var(--colorNeutralStroke2);
-  flex-shrink: 0;
 }
 
 .message-content .code-block-header {
@@ -139,29 +139,51 @@
   color: inherit;
 }
 
+/* Table horizontal scroll container */
 .message-content .chat-table-wrapper {
-  flex: 1;
-  width: 100%;
-  overflow: auto;
-  border: 1px solid var(--colorNeutralStroke2);
-  border-radius: 4px;
-  margin: 12px 0;
-  background-color: var(--colorNeutralBackground1);
+  max-width: 100%;
+  overflow-x: auto;
 }
 
+/* Table structure */
 .message-content table {
-  border-collapse: separate;
-  border-spacing: 0;
+  border-collapse: collapse;
   width: max-content;
   min-width: 100%;
   table-layout: fixed;
   font-size: 0.9em;
 }
 
+/* Header */
+.message-content thead {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.message-content th {
+  background-color: var(--colorNeutralBackground3);
+  font-weight: 600;
+}
+
+/* Scrollable rows only */
+.message-content tbody {
+  display: block;
+  max-height: 320px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.message-content thead tr,
+.message-content tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
 .message-content th,
 .message-content td {
-  border-right: 1px solid var(--colorNeutralStroke2);
-  border-bottom: 1px solid var(--colorNeutralStroke2);
+  border: 1px solid var(--colorNeutralStroke2);
   padding: 8px 12px;
   text-align: left;
   max-width: 220px;
@@ -170,48 +192,28 @@
   white-space: nowrap;
 }
 
-.message-content th {
-  background-color: var(--colorNeutralBackground3);
-  font-weight: 600;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  border-bottom: 2px solid var(--colorNeutralStroke2);
-}
-
-.message-content tr:last-child td {
-  border-bottom: none;
-}
-
-.message-content th:last-child,
-.message-content td:last-child {
-  border-right: none;
-}
-
-.message-content tr:nth-child(even) {
+.message-content tbody tr:nth-child(even) {
   background-color: var(--colorNeutralBackground2);
 }
 
+/* Links */
 .message-content a {
   color: var(--colorBrandForeground1);
   text-decoration: none;
   font-weight: 500;
-  flex-shrink: 0;
 }
 
 .message-content a:hover {
   text-decoration: underline;
 }
 
+/* Horizontal rule */
 .message-content hr {
   border: none;
   border-top: 1px solid var(--colorNeutralStroke2);
   margin: 16px 0;
-  flex-shrink: 0;
 }
 
 .file-download-link {
   margin: 4px 0;
-  display: block;
-  flex-shrink: 0;
 }
