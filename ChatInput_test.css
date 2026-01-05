@@ -36,12 +36,29 @@
   border-bottom: 2px solid var(--colorBrandStroke1); /* highlight only bottom */
 }
 
-/* Inner editable line */
+/* Inner editable must be visually invisible */
 .editor-line {
   width: 100%;
-  outline: none;
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+/* Kill browser focus ring when typing */
+.editor-line:focus,
+.editor-line:focus-visible,
+.editor-line:active {
+  outline: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Kill Chromium inner selection box */
+.editor-line::-webkit-focus-inner {
+  border: 0 !important;
 }
 
 /* Placeholder */
