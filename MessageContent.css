@@ -138,7 +138,13 @@
   color: inherit;
 }
 
-/* TABLE: header fixed, body scrollable only */
+/* Horizontal scroll wrapper */
+.message-content .chat-table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Table layout */
 .message-content table {
   border-collapse: collapse;
   width: max-content;
@@ -147,7 +153,7 @@
   font-size: 0.9em;
 }
 
-/* Header stays fixed */
+/* Header */
 .message-content thead {
   display: table;
   width: max-content;
@@ -159,18 +165,17 @@
   font-weight: 600;
 }
 
-/* Only records scroll */
+/* Scroll only records vertically */
 .message-content tbody {
   display: block;
   max-height: 320px;
-  overflow-x: auto;
   overflow-y: auto;
   overscroll-behavior: contain;
   width: max-content;
   min-width: 100%;
 }
 
-/* Keep column alignment */
+/* Keep alignment */
 .message-content thead tr,
 .message-content tbody tr {
   display: table;
