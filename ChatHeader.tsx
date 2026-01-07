@@ -9,7 +9,7 @@ import { useChat } from '@/contexts/ChatContext';
 import '@/styles/ChatHeader.css';
  
 export const ChatHeader: React.FC = () => {
-  const { clearChat, initializeChat } = useChat();
+  const { clearChat, initializeChat, isBackendUp } = useChat();
  
   return (
     <div className="chat-header">
