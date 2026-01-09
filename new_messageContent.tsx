@@ -21,8 +21,9 @@ export const MessageContent: React.FC<MessageContentProps> = ({ content }) => {
     result = result.replace(/<esc>([\s\S]*?)<\/esc>/gi, '$1');
 
     /**
-     * Added a wrapper for table elements.
-     * handles its own vertical and horizontal scrolling.
+     * Enhanced Regex for table wrapping.
+     * WHY: Wrapping the table in a 'table-scroll-container' allows us to set a
+     * height limit on the table ONLY, keeping intro/outro text outside the scroll.
      */
     result = result.replace(
       /<table([\s\S]*?)<\/table>/gi, 
@@ -109,7 +110,7 @@ export const MessageContent: React.FC<MessageContentProps> = ({ content }) => {
       }
     });
     // This effect ensures handlers are re-attached whenever content updates
-    // while maintaining reference to the processedContent dependencies.
+    // and preserves the existing functionality of the message content links.
   }, [processedContent]);
 
   return (
