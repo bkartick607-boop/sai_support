@@ -39,12 +39,12 @@
 }
 
 /* Sticky header */
+/* CHANGE: Set z-index higher to ensure it stays above scrolling body rows */
 .message-content thead th {
   position: sticky;
   top: 0;
-  z-index: 10; /* Increased z-index to ensure it stays above body content */
+  z-index: 5; 
   background-color: var(--colorNeutralBackground3);
-  /* Ensure header remains visible during horizontal scroll */
 }
 
 /* Strong/Bold text */
@@ -147,24 +147,21 @@
   color: inherit;
 }
 
-/* Modified chat-table-wrapper: stays visible in the main flow. The scroll is now handled by the child container. */
 .message-content .chat-table-wrapper {
   max-width: 100%;
-  display: block;
 }
 
-/* Table Scroll Container */
-/* This handles the vertical and horizontal scroll specifically for the table.
-   By setting a max-height here, the text before and after the table in the 
-   parent container remains "fixed" relative to the table's scrolling area. */
 .message-content .table-scroll-container {
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: 400px; /* Adjust this value as needed for your UI */
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  max-height: 350px; /* Forces vertical scroll when table is long */
+  overflow-x: auto; /* Handles horizontal scroll */
+  overflow-y: auto; /* Handles vertical scroll */
   margin: 12px 0;
   border: 1px solid var(--colorNeutralStroke2);
   border-radius: 4px;
-  position: relative; /* Required for sticky header positioning context */
+  position: relative; /* Context for sticky header */
 }
 
 /* Tables */
