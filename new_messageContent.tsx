@@ -6,29 +6,37 @@ interface MessageContentProps {
   content: string;
 }
 
+/**
+ * Render server-formatted HTML content with download link handling
+ * The backend uses <esc>...</esc> tags to mark content that should be rendered as-is
+ */
 export const MessageContent: React.FC<MessageContentProps> = ({ content }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Process the content to handle <esc> tags and wrap tables for independent scrolling
   const processedContent = useMemo(() => {
     let result = content;
 
+    // Existing: Extract <esc> blocks and replace with their content
     result = result.replace(/<esc>([\s\S]*?)<\/esc>/gi, '$1');
 
-    /*
-     * Wrap ONLY tables inside a scroll container.
-     * This keeps start/end text fixed while table body scrolls.
+    /**
+     * Added a wrapper for table elements.
+     * handles its own vertical and horizontal scrolling.
      */
     result = result.replace(
-      /<table([\s\S]*?)<\/table>/gi,
-      (match) => `<div class="chat-table-wrapper">${match}</div>`
+      /<table([\s\S]*?)<\/table>/gi, 
+      '<div class="table-scroll-container"><table$1</table></div>'
     );
 
     return result;
   }, [content]);
 
+  // Attach click handlers for download links and copy buttons after render
   useEffect(() => {
     if (!containerRef.current) return;
 
+    // Existing: Handle copy buttons for code blocks
     const copyButtons = containerRef.current.querySelectorAll('.copy-btn');
     copyButtons.forEach((btn) => {
       const button = btn as HTMLButtonElement;
@@ -44,7 +52,9 @@ export const MessageContent: React.FC<MessageContentProps> = ({ content }) => {
           );
           if (codeElement) {
             try {
-              await navigator.clipboard.writeText(codeElement.textContent || '');
+              await navigator.clipboard.writeText(
+                codeElement.textContent || ''
+              );
               button.textContent = 'Copied!';
               button.classList.add('copied');
               setTimeout(() => {
@@ -59,6 +69,7 @@ export const MessageContent: React.FC<MessageContentProps> = ({ content }) => {
       }
     });
 
+    // Existing: Handle download links
     const links = containerRef.current.querySelectorAll('a[onclick]');
     links.forEach((link) => {
       const anchor = link as HTMLAnchorElement;
@@ -77,7 +88,11 @@ export const MessageContent: React.FC<MessageContentProps> = ({ content }) => {
 
         anchor.onclick = async (e) => {
           e.preventDefault();
-          await chatService.downloadSandboxFile(container, filename);
+          try {
+            await chatService.downloadSandboxFile(container, filename);
+          } catch (error) {
+            console.error('Sandbox download failed:', error);
+          }
         };
       } else if (blobMatch) {
         const container = blobMatch[1];
@@ -85,17 +100,28 @@ export const MessageContent: React.FC<MessageContentProps> = ({ content }) => {
 
         anchor.onclick = async (e) => {
           e.preventDefault();
-          await chatService.downloadBlobFile(container, filename);
+          try {
+            await chatService.downloadBlobFile(container, filename);
+          } catch (error) {
+            console.error('Blob download failed:', error);
+          }
         };
       }
     });
+    // This effect ensures handlers are re-attached whenever content updates
+    // while maintaining reference to the processedContent dependencies.
   }, [processedContent]);
 
   return (
-    <div
-      ref={containerRef}
-      className="message-content"
-      dangerouslySetInnerHTML={{ __html: processedContent }}
-    />
+    <div ref={containerRef} className="message-content">
+      {/* Scroll + width constraint wrapper */}
+      <div
+        className="chat-table-wrapper"
+        role="region"
+        aria-label="Message content"
+        tabIndex={0}
+        dangerouslySetInnerHTML={{ __html: processedContent }}
+      />
+    </div>
   );
 };
